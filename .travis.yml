@@ -15,7 +15,8 @@ matrix:
 
 env:
   global:
-    secure: "1D18A3jmTjffGsWlszvQS2vfI5oLCcUeixI7J9P3JHD9/T9/Z+D36RSP+j6/bG8xSBQLWSaWbTBXNhyH0jgcZ61DjQvwv46/SgsGjzJ4rmJhJ7mCv5AO6UiamHr9my+hEnh3Hu1ngZ6h36dPRMS9iIiNk6RzARMiBJCh5MLfI+k="
+    - secure: "2jkWz3b8tfN5yCHKbdn02Fd0doKcDXWAQW+h0DJcGzIqBT2OBn5xWHMCRketdo7J9BYcmIVipfCNVxN7QOmJCQeXUWhO4LQPLX0zDkXKP9Tht/cOA2HNNCcIcw5WMucEmeIXWP3ahNdGoUF72TSuKr58Y8VRTfjoTdIq9LL5RIY="
+    - secure: "ecQO3f5Ijl0Ar10XRGGiQ8QGIfq0L7qMdz8ZDcovTL3adrGAX1u0eiRzUodsjd+L+TC2RYAEpzu8hGaQODZhgZZtBF21uos1wXZ8dqvCESnDb0NOOe0fto7cV1JKuimCQ9y6UBFTP2draqIw+CP1XDVeS6tJfuEw9g5nmUdm/g4="
   matrix:
     - TYPO3_VERSION=6.2.*
 
@@ -35,6 +36,7 @@ notifications:
     - helmut@typo3.org
 
 before_script:
+  - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
   - export LOCAL_REPO=`pwd`
   - git branch travis-build
   - cd ..
