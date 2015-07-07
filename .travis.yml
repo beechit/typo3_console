@@ -33,7 +33,7 @@ notifications:
     - helmut@typo3.org
 
 before_script:
-  - [ -f .git/shallow ] && git fetch --unshallow
+  - if [ -f .git/shallow ]; then git fetch --unshallow; fi
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
   - git branch travis-build
   - export REPO_URL=`pwd`
