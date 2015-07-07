@@ -80,7 +80,6 @@ class CacheServiceTest extends UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException \TYPO3\CMS\Core\Cache\Exception\NoSuchCacheGroupException
 	 */
 	public function flushByGroupThrowsExceptionForInvalidGroups() {
 		$this->setCacheConfiguration(
