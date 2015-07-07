@@ -42,13 +42,13 @@ before_script:
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
   - git branch travis-local-build
   - export REPO_URL=`[ "$TRAVIS_PULL_REQUEST" != "false" ] && pwd || git remote -v | sed 's/^origin\s*\([^ ]*\) (fetch)$/\1/gp;d'`
-  - export COMPOSER_VERSION_CONSTRAINT=`[ "$TRAVIS_PULL_REQUEST" != "false" ] && echo 'travis-local-build' || echo "$TRAVIS_BRANCH#$TRAVIS_COMMIT"`
+  - export COMPOSER_VERSION_CONSTRAINT=`[ "$TRAVIS_PULL_REQUEST" != "false" ] && echo 'dev-travis-local-build' || echo "dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"`
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
   - composer config repositories.console vcs "$REPO_URL"
-  - echo composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
-  - composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
+  - echo composer require helhum/typo3-console="$COMPOSER_VERSION_CONSTRAINT"
+  - composer require helhum/typo3-console="$COMPOSER_VERSION_CONSTRAINT"
   - cp typo3conf/ext/typo3_console/Scripts/typo3cms .
 
 script:
