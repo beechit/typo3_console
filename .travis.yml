@@ -44,7 +44,7 @@ before_script:
   - composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
   - cp typo3conf/ext/typo3_console/Scripts/typo3cms .
   - export TRAVIS_PULL_REQUEST=67
-  - if [ $TRAVIS_PULL_REQUEST != "false" ]; then cd typo3conf/ext/typo3_console; git fetch origin "+refs/pull/$TRAVIS_PULL_REQUEST/merge:" && git checkout -qf FETCH_HEAD && cd - ;fi
+  - if [ $TRAVIS_PULL_REQUEST != "false" ]; then cd typo3conf/ext/typo3_console; git fetch origin "+refs/pull/$TRAVIS_PULL_REQUEST/merge:" && git checkout -qf FETCH_HEAD && git statue && cd - ;fi
 
 script:
   - >
