@@ -35,7 +35,7 @@ notifications:
 before_script:
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
   - export REPO_URL=`git remote -v | sed 's/^origin\s*\([^ ]*\) (fetch)$/\1/gp;d'`
-  - echo $REPO_URL
+  - echo $TRAVIS_PULL_REQUEST
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
