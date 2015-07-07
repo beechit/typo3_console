@@ -14,8 +14,11 @@ matrix:
       env: TYPO3_BRANCH=master
 
 env:
-  - TYPO3_BRANCH=master
-  - TYPO3_BRANCH=TYPO3_6-2
+  global:
+    secure: "1D18A3jmTjffGsWlszvQS2vfI5oLCcUeixI7J9P3JHD9/T9/Z+D36RSP+j6/bG8xSBQLWSaWbTBXNhyH0jgcZ61DjQvwv46/SgsGjzJ4rmJhJ7mCv5AO6UiamHr9my+hEnh3Hu1ngZ6h36dPRMS9iIiNk6RzARMiBJCh5MLfI+k="
+  matrix:
+    - TYPO3_BRANCH=master
+    - TYPO3_BRANCH=TYPO3_6-2
 
 sudo: false
 
