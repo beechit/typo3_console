@@ -34,11 +34,12 @@ notifications:
 
 before_script:
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
-  - git remote -v
+  - export REPO_URL=`git remote -v | sed 's/^origin\s*\([^ ]*\) (fetch)$/\1/gp;d'`
+  - echo $REPO_URL
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
-  - composer config repositories.console vcs git://github.com/helhum/typo3_console.git
+  - composer config repositories.console vcs "$REPO_URL"
   - echo composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
   - composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
   - cp typo3conf/ext/typo3_console/Scripts/typo3cms .
