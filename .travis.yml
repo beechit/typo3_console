@@ -42,6 +42,7 @@ before_script:
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
+  - mkdir -p typo3conf/ext
   - composer config repositories.console vcs $LOCAL_REPO
   - composer require helhum/typo3-console=dev-travis-build
 
