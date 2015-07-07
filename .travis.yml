@@ -33,6 +33,12 @@ notifications:
     - helmut@typo3.org
 
 before_script:
+  - export TRAVIS_PULL_REQUEST=67
+  - cd ..
+  - git clone --depth=50 git://github.com/helhum/typo3_console.git typo3_console_pull_test
+  - cd typo3_console_pull_test
+  - git fetch origin "+refs/pull/$TRAVIS_PULL_REQUEST/merge:"
+  - git checkout -qf FETCH_HEAD
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
   - git branch travis-local-build
   - export REPO_URL=`[ "$TRAVIS_PULL_REQUEST" != "false" ] && pwd || git remote -v | sed 's/^origin\s*\([^ ]*\) (fetch)$/\1/gp;d'`
