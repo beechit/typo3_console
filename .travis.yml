@@ -39,11 +39,8 @@ before_script:
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
-  - mkdir -p typo3conf/ext
-  - git clone "$LOCAL_REPO" 'typo3conf/ext/typo3_console'
-  - rm -rf 'typo3conf/ext/typo3_console'
-  - composer config repositories.console vcs $LOCAL_REPO
-  - composer require helhum/typo3-console=dev-travis-build
+  - echo composer require helhum/typo3-console=$TRAVIS_BRANCH#$TRAVIS_COMMIT
+  - composer require helhum/typo3-console=$TRAVIS_BRANCH#$TRAVIS_COMMIT
 
 script:
   - >
