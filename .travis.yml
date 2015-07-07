@@ -39,8 +39,8 @@ before_script:
   - cd ..
   - composer create-project typo3/cms=$TYPO3_VERSION travis-build
   - cd travis-build
-  - echo composer require helhum/typo3-console=$TRAVIS_BRANCH#$TRAVIS_COMMIT
-  - composer require helhum/typo3-console=$TRAVIS_BRANCH#$TRAVIS_COMMIT
+  - echo composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
+  - composer require helhum/typo3-console="dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT"
 
 script:
   - >
